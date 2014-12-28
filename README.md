@@ -18,9 +18,9 @@ Permission bar makes it simple and clear to visitors that cookies are in use and
 
 ## How it works?
  
-Permisson Bar uses jQuery for its animations and events. It checks if 'jQuery' is defined, and if it's not, it provides the library by itself (version 1.8 - from Google's CDN). 
+Permisson Bar is pure vanilla javascript code, no jQuery or any other frameworks needed. If a website has a cookie or some localStorage data set then the bar is shown, otherwhise nothing happens.
 
-Once user clicks 'Allow Cookies' Permission Bar will set a cookie for that domain with a name 'permissionbar' that will expire in 30 days. This means that the plugin will only show up once per domain (per month). 
+Once user clicks 'Allow Cookies' Permission Bar will set a cookie for that domain with a name 'permissionbar' that will expire in 30 days. This means that the plugin will only show up once per domain (per month).
 
 If a user decides to click "Disallow Cookies", Permissions Bar will simply remove all cookies and localStorage data.
 
@@ -36,7 +36,11 @@ If a user decides to click "Disallow Cookies", Permissions Bar will simply remov
 	
 ## Changelog
 
-### Version 1.6
+### Version 1.7
+
+	Version 1.7
+	Date of Commit 28.12.14
+	Plugin doesn't need jQuery anymore since everything has been translated to pure vanilla javascript. Some minor additional changes.
 
 	Version 1.6
 	Date of Commit 28.12.14
