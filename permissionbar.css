@@ -39,9 +39,6 @@ body {
 }
 
 #permission-bar {
-	transition: display 5s ease-in-out;
-	-webkit-transition: display 5s ease-in-out;
-
     position: fixed;
     bottom: 0;
     left: 0;
