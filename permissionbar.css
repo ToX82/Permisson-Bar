@@ -39,6 +39,9 @@ body {
 }
 
 #permission-bar {
+	transition: display 5s ease-in-out;
+	-webkit-transition: display 5s ease-in-out;
+
     position: fixed;
     bottom: 0;
     left: 0;
@@ -117,6 +120,11 @@ body {
     z-index: 9998;
     border-radius: 7px;
     font-size: 15px;
+
+    top: 50%;
+    margin-top: -225px;
+    left: 50%;
+    margin-left: -200px;
 }
 
 .clear {
