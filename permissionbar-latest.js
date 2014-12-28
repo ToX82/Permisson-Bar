@@ -6,6 +6,11 @@
    Version: 1.6
 */
 var jQload = false;
+var languages = [
+	'en',
+	'it',
+	'fr'
+];
 
 function initPermBar() {
     if (typeof (jQuery) == 'undefined') {
@@ -34,7 +39,12 @@ function initPermBar() {
             var theSetup = function thesetup() {
                 loadExternal("permissionbar.css", "css");
 
-				var userLang = navigator.language || navigator.userLanguage; // Get browser's language
+                // Get browser's language
+				var userLang = navigator.language || navigator.userLanguage;
+
+				if ( $.inArray(userLang, languages) < 0) {
+					userLang = "en";
+				}
 				$.ajax({
 					url: "lang/" + userLang + ".html",
 					async: false
@@ -56,13 +66,13 @@ function initPermBar() {
             var setCookie = function setCookie(c_name, value, exdays) {
                 var exdate = new Date();
                 exdate.setDate(exdate.getDate() + exdays);
-                var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+                var c_value = escape(value) + ((exdays === null) ? "" : "; expires=" + exdate.toUTCString());
                 document.cookie = c_name + "=" + c_value;
             };
             var checkCookie = function checkCookie() {
                 var permissionbar = getCookie("permissionbar");
                 if (permissionbar === null || permissionbar === "" || permissionbar === undefined) {
-                console.log( $('#permission-bar').html() );
+
                     $('#permission-bar').fadeToggle('slow');
                     var button = $('#permission-bar-button');
                     button.on('click', function (e) {
@@ -71,8 +81,17 @@ function initPermBar() {
                     });
                 }
             };
+            var removeCookies = function removeCookies() {
+            	// Clear cookies
+			    document.cookie.split(";").forEach(function(c) { 
+			    	document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+			    });
+			    // Clear localStorage
+			    localStorage.clear();
+            };
             var permissionBarInit = function permissionBarInit() {
                 var button = $('#permission-bar-button');
+                var buttonNo = $('#permission-bar-button-no');
                 var promptBtn = $('#permission-bar-prompt-button');
                 var promptClose = $('#permission-bar-prompt-close');
                 var prompt = $('#permission-bar-prompt');
@@ -89,16 +108,20 @@ function initPermBar() {
                     left: ($(window)
                         .width() / 2) - 225
                 });
+                buttonNo.on('click', function() {
+                	removeCookies();
+                	$('#permission-bar').fadeOut('slow');
+                });
             };
             var permissionBar = function permissionBar() {
                 theSetup();
                 permissionBarInit();
                 checkCookie();
             };
-            $(document)
-                .ready(function () {
-                    permissionBar();
-                });
+            
+            $(document).ready(function () {
+                permissionBar();
+            });
         })(jQuery);
     }
 }
