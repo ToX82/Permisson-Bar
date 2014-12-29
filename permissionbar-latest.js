@@ -43,11 +43,11 @@ function setupPermissionsBar() {
         document.head.appendChild(fileref);
 
         // Load the correct language messages file and set some variables
-        request = new XMLHttpRequest();
+        var request = new XMLHttpRequest();
         request.open('GET', "lang/" + userLang + ".html", false);
         request.onload = function () {
             if (request.status >= 200 && request.status < 400) {
-                resp = request.responseText;
+                var resp = request.responseText;
                 document.body.innerHTML += (resp);
 
                 permissionBar = document.getElementById('permission-bar');
@@ -69,7 +69,7 @@ function setupPermissionsBar() {
     }
 
     function detectLang() {
-        userLang = getURLParameter("forceLang");
+        var userLang = getURLParameter("forceLang");
         if (userLang === false) {
             userLang = navigator.language || navigator.userLanguage;
         }
