@@ -1,10 +1,21 @@
 /*
-   Plugin Name: Permission Bar
-   Plugin URL: http://permissionbar.com/
-   Author: Milosz Falinski, Callum Hopkins & StudioNEC.
-   Description: Permission Bar is a free & simple solution to the EU cookie law.
-   Version: 1.6
+    Plugin Name: Permission Bar
+    Plugin URL: http://permissionbar.com/
+    Author: Milosz Falinski, Callum Hopkins & StudioNEC.
+    Description: Permission Bar is a free & simple solution to the EU cookie law.
+    Version: 1.6
+
+    Usage:
+        Just call the js file like this for default configuration:
+            <script src="permissionbar-latest.js"></script>
+        Or like this if you want to personalize it:
+            <script src="permissionbar-latest.js?forceYes=1"></script>
+
+    Url parameters:
+        forceYes=1 <= hides deny consent button and text
+        forceLang=XX <= force a specific language
 */
+
 var languages = [
     'en',
     'it',
@@ -12,20 +23,25 @@ var languages = [
 ];
 
 function setupPermissionsBar() {
+    // Only load the plugin if needed
+    var accepted = getCookie("permissionbar");
+    if (accepted === undefined) {
+        loadAssets();
+        prepareActions();
+        fadeIn(permissionBar);
+    }
+
 
     function loadAssets() {
+        var userLang = detectLang();
+
         // Load CSS file
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
         fileref.setAttribute("href", "permissionbar.css");
         document.head.appendChild(fileref);
-        // Get browser's language
-        var userLang = navigator.language || navigator.userLanguage;
-        // Specify userLang = "xx" here if you need to force a specific language
-        if (languages.indexOf(userLang) < 0) {
-            userLang = "en";
-        }
+
         // Load the correct language messages file and set some variables
         request = new XMLHttpRequest();
         request.open('GET', "lang/" + userLang + ".html", false);
@@ -40,9 +56,27 @@ function setupPermissionsBar() {
                 promptBtn = document.getElementById('permission-bar-prompt-button');
                 promptClose = document.getElementById('permission-bar-prompt-close');
                 prompt = document.getElementById('permission-bar-prompt');
+                promptContent = document.getElementById('permission-bar-prompt-content');   
+                promptNoConsent = document.getElementById('permission-bar-no-consent');
+
+                if (getURLParameter("forceYes")) {
+                    promptNoConsent.style.display = "none";
+                    buttonNo.style.display = "none";
+                }
             }
         };
         request.send();
+    }
+
+    function detectLang() {
+        userLang = getURLParameter("forceLang");
+        if (userLang === false) {
+            userLang = navigator.language || navigator.userLanguage;
+        }
+        if (languages.indexOf(userLang) < 0) {
+            userLang = "en";
+        }
+        return userLang;
     }
 
     function getCookie(c_name) {
@@ -93,14 +127,29 @@ function setupPermissionsBar() {
         })();
     }
 
-    function actions() {
+    function getURLParameter(name) {
+        var myTag = document.getElementsByTagName("script");
+        var src = myTag[myTag.length - 1].src;
+        var set = unescape(src).split(name + "=");
+        if (set[1]) {
+            return set[1].split(/[&?]+/)[0];
+        } else {
+            return false;
+        }
+    }
+
+    function prepareActions() {
         button.addEventListener('click', function () {
             setCookie("permissionbar", "CookiesAllowed", 30);
             fadeOut(permissionBar);
         });
         buttonNo.addEventListener('click', function () {
-            removeCookies();
-            fadeOut(permissionBar);
+            var txt = promptNoConsent.innerText;
+            var confirm = window.confirm(txt);
+            if (confirm === true) {
+                removeCookies();
+                fadeOut(permissionBar);
+            }
         });
         promptBtn.addEventListener('click', function () {
             fadeIn(prompt);
@@ -109,18 +158,6 @@ function setupPermissionsBar() {
             fadeOut(prompt);
         });
     }
-
-    function loadStuff() {
-        var accepted = getCookie("permissionbar");
-        if (accepted === null || accepted === "" || accepted === undefined) {
-            loadAssets();
-            actions();
-
-            fadeIn(permissionBar);            
-        }
-    }
-
-    loadStuff();
 }
 
 
