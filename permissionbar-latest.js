@@ -2,8 +2,9 @@
     Plugin Name: Permission Bar
     Plugin URL: http://permissionbar.com/
     Author: Milosz Falinski, Callum Hopkins & StudioNEC.
+    Updated: Emanuele "ToX" Toscano
     Description: Permission Bar is a free & simple solution to the EU cookie law.
-    Version: 1.6
+    Version: 1.8
 
     Usage:
         Just call the js file like this for default configuration:
@@ -36,15 +37,19 @@ function setupPermissionsBar() {
         var userLang = detectLang();
 
         // Load CSS file
+        var myTag = document.getElementsByTagName("script");
+        var path = myTag[myTag.length - 1].src;
+        path = path.replace(/[^\/]*$/, "");
+        console.log(path);
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", "permissionbar.css");
+        fileref.setAttribute("href", path + "/permissionbar.css");
         document.head.appendChild(fileref);
 
         // Load the correct language messages file and set some variables
         var request = new XMLHttpRequest();
-        request.open('GET', "lang/" + userLang + ".html", false);
+        request.open('GET', path + "/lang/" + userLang + ".html", false);
         request.onload = function () {
             if (request.status >= 200 && request.status < 400) {
                 var resp = request.responseText;

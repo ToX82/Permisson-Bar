@@ -28,15 +28,34 @@ If a user decides to click "Disallow Cookies", Permissions Bar will simply remov
 ## How to Install?
 
 1. Grab the Github repo and place it on the server in its own directory. All the files, including images and stylesheets, need to maintain it's relative structure - that is be in the same directory - for the plugin to work correctly. 
-2. Put the following code on all relevant pages of your website right before the &lt;/body&gt; tag.:
+2. Put the following code on all relevant pages of your website as the last thing before the &lt;/body&gt; tag.
+
+Use this for the standard configuration
 
 	<code>
 	&lt;script type="text/javascript" src="PATH-TO/permissionbar-latest.js"&gt;&lt;/script&gt;
 	</code>
+
+Or, if you need to configure it, you can do it like that:
+
+	<code>
+	&lt;script type="text/javascript" src="PATH-TO/permissionbar-latest.js?forceYes=1"&gt;&lt;/script&gt;
+	</code>
+
+Here is a short list of parameters you can use:
+
+    forceYes=1 <= hides deny consent button and text
+    forceLang=XX <= force a specific language
 	
+
 ## Changelog
 
-### Version 1.7
+### Version 1.8
+
+	Version 1.8
+	Date of Commit 29.12.14
+	Plugin is now configurable by passing parameters to the script src.
+
 
 	Version 1.7
 	Date of Commit 28.12.14
