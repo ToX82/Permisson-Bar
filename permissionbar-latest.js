@@ -29,7 +29,7 @@ function setupPermissionsBar() {
     if (accepted === undefined) {
         loadAssets();
         prepareActions();
-        fadeIn(permissionBar);
+        fadeIn(permissionBar, 250);
     }
 
 
@@ -40,7 +40,6 @@ function setupPermissionsBar() {
         var myTag = document.getElementsByTagName("script");
         var path = myTag[myTag.length - 1].src;
         path = path.replace(/[^\/]*$/, "");
-        console.log(path);
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
@@ -115,20 +114,20 @@ function setupPermissionsBar() {
         localStorage.clear();
     }
 
-    function fadeIn(el) {
+    function fadeIn(el, speed) {
         var s = el.style;
         s.opacity = 0;
         s.display = "block";
         (function fade() {
-            (s.opacity -= -0.1) > 0.9 ? null : setTimeout(fade, 25);
+            (s.opacity -= -0.1) > 0.9 ? null : setTimeout(fade, (speed/10));
         })();
     }
 
-    function fadeOut(el) {
+    function fadeOut(el, speed) {
         var s = el.style;
         s.opacity = 1;
         (function fade() {
-            (s.opacity -= 0.1) < 0.1 ? s.display = "none" : setTimeout(fade, 25);
+            (s.opacity -= 0.1) < 0.1 ? s.display = "none" : setTimeout(fade, (speed/10));
         })();
     }
 
@@ -146,21 +145,21 @@ function setupPermissionsBar() {
     function prepareActions() {
         button.addEventListener('click', function () {
             setCookie("permissionbar", "CookiesAllowed", 30);
-            fadeOut(permissionBar);
+            fadeOut(permissionBar, 250);
         });
         buttonNo.addEventListener('click', function () {
             var txt = promptNoConsent.innerText;
             var confirm = window.confirm(txt);
             if (confirm === true) {
                 removeCookies();
-                fadeOut(permissionBar);
+                fadeOut(permissionBar, 250);
             }
         });
         promptBtn.addEventListener('click', function () {
-            fadeIn(prompt);
+            fadeIn(prompt, 250);
         });
         promptClose.addEventListener('click', function () {
-            fadeOut(prompt);
+            fadeOut(prompt, 250);
         });
     }
 }
