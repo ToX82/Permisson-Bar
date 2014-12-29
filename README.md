@@ -32,15 +32,11 @@ If a user decides to click "Disallow Cookies", Permissions Bar will simply remov
 
 Use this for the standard configuration
 
-	<code>
-	&lt;script type="text/javascript" src="PATH-TO/permissionbar-latest.js"&gt;&lt;/script&gt;
-	</code>
+	<script type="text/javascript" src="PATH-TO/permissionbar-latest.js"></script>
 
 Or, if you need to configure it, you can do it like that:
 
-	<code>
-	&lt;script type="text/javascript" src="PATH-TO/permissionbar-latest.js?forceYes=1"&gt;&lt;/script&gt;
-	</code>
+	<script type="text/javascript" src="PATH-TO/permissionbar-latest.js?forceYes=1"></script>
 
 Here is a short list of parameters you can use:
 
@@ -54,16 +50,18 @@ Here is a short list of parameters you can use:
 
 	Version 1.8
 	Date of Commit 29.12.14
+	Author: Emanuele "ToX" Toscano
 	Plugin is now configurable by passing parameters to the script src.
-
 
 	Version 1.7
 	Date of Commit 28.12.14
+	Author: Emanuele "ToX" Toscano
 	Plugin doesn't need jQuery anymore since everything has been translated to pure vanilla javascript. Some minor additional changes.
 
 	Version 1.6
 	Date of Commit 28.12.14
-	Forked by Emanuele "ToX" Toscano, added multilanguage (browser detected) and localStorage support. Added some additional checks to verify if
+	Author: Emanuele "ToX" Toscano
+	Added multilanguage (browser detected) and localStorage support. Added some additional checks to verify if
 	the bar is needed or not (there is no reason to show this bar if you are not using cookies nor localStorage). Several other minor changes too.
 
 	Version 1.5
