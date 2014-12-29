@@ -32,15 +32,11 @@ If a user decides to click "Disallow Cookies", Permissions Bar will simply remov
 
 Use this for the standard configuration
 
-	<code>
-	&lt;script type="text/javascript" src="PATH-TO/permissionbar-latest.js"&gt;&lt;/script&gt;
-	</code>
+	<script type="text/javascript" src="PATH-TO/permissionbar-latest.js"></script>
 
 Or, if you need to configure it, you can do it like that:
 
-	<code>
-	&lt;script type="text/javascript" src="PATH-TO/permissionbar-latest.js?forceYes=1"&gt;&lt;/script&gt;
-	</code>
+	<script type="text/javascript" src="PATH-TO/permissionbar-latest.js?forceYes=1"></script>
 
 Here is a short list of parameters you can use:
 
