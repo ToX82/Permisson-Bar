@@ -1,10 +1,10 @@
 /*
     Plugin Name: Permission Bar
     Plugin URL: http://permissionbar.com/
-    Author: Milosz Falinski, Callum Hopkins & StudioNEC.
-    Updated: Emanuele "ToX" Toscano
-    Description: Permission Bar is a free & simple solution to the EU cookie law.
-    Version: 1.8
+    @author: Milosz Falinski, Callum Hopkins & StudioNEC.
+    @author: Emanuele "ToX" Toscano
+    @description: Permission Bar is a free & simple solution to the EU cookie law.
+    @version: 1.9
 
     Usage:
         Just call the js file like this for default configuration:
@@ -13,33 +13,61 @@
             <script src="permissionbar-latest.js?forceYes=1"></script>
 
     Url parameters:
+        blocking=1 <= blocks all the page until the user clicks deny or consent cookies
         forceYes=1 <= hides deny consent button and text
         forceLang=XX <= force a specific language
 */
 
+/*
+ * Available languages array
+ */
 var PermissionLanguages = [
     'en',
     'it',
     'fr'
 ];
 
+/**
+ * Main function
+ */
 function setupPermissionsBar() {
-    // Only load the plugin if needed
-    var accepted = getCookie("permissionbar");
-    if (accepted === undefined) {
-        loadAssets();
-        prepareActions();
-        fadeIn(permissionBar, 250);
+
+    /**
+     * Load plugin only if needed (do nothing if permissionbar cookie is set)
+     * @param null
+     * @return null
+     */
+    function startup() {
+        var accepted = getCookie("permissionbar");
+        if (accepted === undefined) {
+            scriptPath = getScriptPath();
+
+            loadAssets();
+            prepareActions();
+            fadeIn(permissionBar, 250);
+        }
     }
 
+    /**
+     * Get this javascript's path
+     * @param null
+     * @return {String} this javascript's path
+     */
+    function getScriptPath() {
+        var scripts = document.getElementsByTagName("script");
+        return scripts[scripts.length - 1].src;
+    }
 
+    /**
+     * Load external files (css, language files etc.)
+     * @param null
+     * @return null
+     */
     function loadAssets() {
         var userLang = detectLang();
 
         // Load CSS file
-        var scripts = document.getElementsByTagName("script");
-        var path = scripts[scripts.length - 1].src;
-        path = path.replace(/[^\/]*$/, "");
+        path = scriptPath.replace(/[^\/]*$/, "");
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
@@ -69,11 +97,22 @@ function setupPermissionsBar() {
                     promptNoConsent.style.display = "none";
                     buttonNo.style.display = "none";
                 }
+
+                if (getURLParameter("blocking")) {
+                    fadeIn(prompt, 500);
+                    promptClose.style.display = "none";
+                }
             }
         };
         request.send();
     }
 
+
+    /**
+     * Get browser's language or, if available, the specified one
+     * @param null
+     * @return {String} userLang - short language name
+     */
     function detectLang() {
         var userLang = getURLParameter("forceLang");
         if (userLang === false) {
@@ -85,6 +124,11 @@ function setupPermissionsBar() {
         return userLang;
     }
 
+    /**
+     * Get Permission Bar's cookie if available
+     * @param {string} c_name - cookie name
+     * @return {string} cookie value
+     */
     function getCookie(c_name) {
         var i, x, y, ARRcookies = document.cookie.split(";");
         for (i = 0; i < ARRcookies.length; i++) {
@@ -97,6 +141,13 @@ function setupPermissionsBar() {
         }
     }
 
+    /**
+     * Get Permission Bar's cookie if available
+     * @param {string} c_name - cookie name
+     * @param {string} value - cookie value
+     * @param {string} exdays - expiration days
+     * @return null
+     */
     function setCookie(c_name, value, exdays) {
         var exdate = new Date();
         exdate.setDate(exdate.getDate() + exdays);
@@ -104,6 +155,11 @@ function setupPermissionsBar() {
         document.cookie = c_name + "=" + c_value;
     }
 
+    /**
+     * Remove all the cookies and empty localStorage
+     * @param null
+     * @return null
+     */
     function removeCookies() {
         // Clear cookies
         document.cookie.split(";")
@@ -116,6 +172,13 @@ function setupPermissionsBar() {
         localStorage.clear();
     }
 
+
+    /**
+     * FadeIn effect
+     * @param {string} el - element name
+     * @param {string} speed - effect duration
+     * @return null
+     */
     function fadeIn(el, speed) {
         var s = el.style;
         s.opacity = 0;
@@ -125,6 +188,13 @@ function setupPermissionsBar() {
         })();
     }
 
+
+    /**
+     * FadeOut effect
+     * @param {string} el - element name
+     * @param {string} speed - effect duration
+     * @return null
+     */
     function fadeOut(el, speed) {
         var s = el.style;
         s.opacity = 1;
@@ -133,10 +203,15 @@ function setupPermissionsBar() {
         })();
     }
 
+
+
+    /**
+     * GET parameter to look for
+     * @param {string} name - param name
+     * @return {string} param value (false if parameter is not found)
+     */
     function getURLParameter(name) {
-        var scripts = document.getElementsByTagName("script");
-        var path = scripts[scripts.length - 1].src;
-        var set = unescape(path).split(name + "=");
+        var set = unescape(scriptPath).split(name + "=");
         if (set[1]) {
             return set[1].split(/[&?]+/)[0];
         } else {
@@ -144,26 +219,38 @@ function setupPermissionsBar() {
         }
     }
 
+    /**
+     * Button actions
+     * @param null
+     * @return null
+     */
     function prepareActions() {
         button.addEventListener('click', function () {
             setCookie("permissionbar", "CookiesAllowed", 30);
+            fadeOut(prompt, 250);
             fadeOut(permissionBar, 250);
         });
+
         buttonNo.addEventListener('click', function () {
             var txt = promptNoConsent.innerText;
             var confirm = window.confirm(txt);
             if (confirm === true) {
                 removeCookies();
+                fadeOut(prompt, 250);
                 fadeOut(permissionBar, 250);
             }
         });
+
         promptBtn.addEventListener('click', function () {
             fadeIn(prompt, 250);
         });
+
         promptClose.addEventListener('click', function () {
             fadeOut(prompt, 250);
         });
     }
+
+    startup();
 }
 
 

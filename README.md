@@ -13,7 +13,14 @@ Permission bar makes it simple and clear to visitors that cookies are in use and
 
 ## Important Legal Reading
 
-1. [Read the EU legislation on cookies](http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm)
+1.  Belgio: Commission de la protection de la vie priv&eacute;e ([Francese](http://www.privacycommission.be/sites/privacycommission/files/documents/Projet_de_recommandation_cookies.pdf)|[Olandese](http://www.privacycommission.be/sites/privacycommission/files/documents/Ontwerp_aanbeveling_cookies.pdf))
+2.  Czech Republic:[&Uacute;řad pro ochranu osobn&iacute;ch &uacute;dajů](http://www.uoou.cz/vismo/zobraz_dok.asp?id_org=200144&amp;id_ktg=1853&amp;n=cookies-prechod-z-principu-opt-out-na-opt-in&amp;query=cookie)
+3.  France:[Commission Nationale de l&#39;Informatique et des Libert&eacute;s](http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/)
+4.  Italy:[Garante per la protezione dei dati personali](http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939)
+5.  Luxembourg:[Commission nationale pour la protection des donn&eacute;es](http://www.cnpd.public.lu/fr/actualites/international/2012/06/G29-avis-cookies/index.html?highlight=cookies)
+6.  Netherlands:[Autoriteit Consument en Markt](https://www.acm.nl/nl/publicaties/publicatie/12768/Veelgestelde-vragen-over-de-cookiebepaling/)
+7.  Spain:[Agencia de Protecci&oacute;n de Datos](http://www.agpd.es/portalwebAGPD/canaldocumentacion/publicaciones/common/Guias/Guia_Cookies.pdf)
+8.  UK:[Information Commissioner&#39;s Office](http://ico.org.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies)
 
 
 ## How it works?
@@ -42,11 +49,17 @@ Here is a short list of parameters you can use:
 
     forceYes=1 <= hides deny consent button and text
     forceLang=XX <= force a specific language
+    blocking=1 <= blocks all the page until the user clicks deny or consent cookies
 	
 
 ## Changelog
 
-### Version 1.8
+### Version 1.9
+
+	Version 1.9
+	Date of Commit 30.12.14
+	Author: Emanuele "ToX" Toscano
+	Added (optional) blocking behavior: if this option is active, the page is blocked until the user clicks deny or consent cookies
 
 	Version 1.8
 	Date of Commit 29.12.14
