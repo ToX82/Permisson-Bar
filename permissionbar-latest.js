@@ -17,7 +17,7 @@
         forceLang=XX <= force a specific language
 */
 
-var languages = [
+var PermissionLanguages = [
     'en',
     'it',
     'fr'
@@ -37,8 +37,8 @@ function setupPermissionsBar() {
         var userLang = detectLang();
 
         // Load CSS file
-        var myTag = document.getElementsByTagName("script");
-        var path = myTag[myTag.length - 1].src;
+        var scripts = document.getElementsByTagName("script");
+        var path = scripts[scripts.length - 1].src;
         path = path.replace(/[^\/]*$/, "");
         var fileref = document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
@@ -51,8 +51,10 @@ function setupPermissionsBar() {
         request.open('GET', path + "/lang/" + userLang + ".html", false);
         request.onload = function () {
             if (request.status >= 200 && request.status < 400) {
+                var element = document.createElement('div');
                 var resp = request.responseText;
-                document.body.innerHTML += (resp);
+                element.innerHTML = resp;
+                document.getElementsByTagName('body')[0].appendChild(element);
 
                 permissionBar = document.getElementById('permission-bar');
                 button = document.getElementById('permission-bar-button');
@@ -77,7 +79,7 @@ function setupPermissionsBar() {
         if (userLang === false) {
             userLang = navigator.language || navigator.userLanguage;
         }
-        if (languages.indexOf(userLang) < 0) {
+        if (PermissionLanguages.indexOf(userLang) < 0) {
             userLang = "en";
         }
         return userLang;
@@ -132,9 +134,9 @@ function setupPermissionsBar() {
     }
 
     function getURLParameter(name) {
-        var myTag = document.getElementsByTagName("script");
-        var src = myTag[myTag.length - 1].src;
-        var set = unescape(src).split(name + "=");
+        var scripts = document.getElementsByTagName("script");
+        var path = scripts[scripts.length - 1].src;
+        var set = unescape(path).split(name + "=");
         if (set[1]) {
             return set[1].split(/[&?]+/)[0];
         } else {
