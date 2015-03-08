@@ -37,7 +37,7 @@ function setupPermissionsBar() {
      * @param null
      * @return null
      */
-    function startup() {
+    if (document.cookie.length > 0 || window.localStorage.length > 0) {
         var accepted = getCookie("permissionbar");
         if (accepted === undefined) {
             scriptPath = getScriptPath();
@@ -55,7 +55,17 @@ function setupPermissionsBar() {
      */
     function getScriptPath() {
         var scripts = document.getElementsByTagName("script");
-        return scripts[scripts.length - 1].src;
+
+        for (var i = 0; i < scripts.length; i++) {
+            if (scripts[i].hasAttribute("src")) {
+                var path = scripts[i].src;
+                if (path.indexOf("permissionbar") >-1) {
+                    return path;
+                }
+            }
+        }
+
+        //return scripts[scripts.length - 1].src;
     }
 
     /**
@@ -249,14 +259,10 @@ function setupPermissionsBar() {
             fadeOut(prompt, 250);
         });
     }
-
-    startup();
 }
 
 
 // Load the script only if there is at least a cookie or a localStorage item
 document.addEventListener("DOMContentLoaded", function () {
-    if (document.cookie.length > 0 || window.localStorage.length > 0) {
-        setupPermissionsBar();
-    }
+    setupPermissionsBar();
 });
