@@ -1,37 +1,37 @@
 body {
-	margin-bottom: 31px !important;
+    margin-bottom: 40px !important;
 }
 
 #permission-bar-prompt-content, #permission-bar {
-    color: white;
+    color: #FFF;
     font-family: 'Open Sans', 'Lucida Grande', 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
     font-weight: 300;
 }
 
 #permission-bar-prompt-content a, #permission-bar a, #permission-bar-prompt-content span {
-    color: #31a8f0;
+    color: #31A8F0;
     text-decoration: none;
 }
 
 #permission-bar-prompt-content a:hover, #permission-bar a:hover {
-    color: #31a8f0;
+    color: #31A8F0;
     text-decoration: underline;
 }
 
 #permission-bar-prompt-close {
-    width: 14px;
-    height: 14px;
-    float: right;
-    display: block;
     background: url(x.png) no-repeat;
+    display: block;
+    float: right;
+    height: 14px;
+    width: 14px;
 }
 
 #permission-bar-prompt-logo {
-    width: 190px;
-    height: 42px;
-    float: left;
-    display: block;
     background: url(logo.png) no-repeat;
+    display: block;
+    float: left;
+    height: 42px;
+    width: 190px;
 }
 
 #permission-bar-prompt-close span, #permission-bar-prompt-logo span {
@@ -39,90 +39,118 @@ body {
 }
 
 #permission-bar {
-    position: fixed;
+    background: #45484D;
+    background:    -moz-linear-gradient(top,  rgba(30,30,30,0.95) 0, rgba(0,0,0,0.95) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,30,30,0.95)), color-stop(100%,rgba(0,0,0,0.95)));
+    background: -webkit-linear-gradient(top,  rgba(30,30,30,0.95) 0, rgba(0,0,0,0.95) 100%);
+    background:      -o-linear-gradient(top,  rgba(30,30,30,0.95) 0, rgba(0,0,0,0.95) 100%);
+    background:     -ms-linear-gradient(top,  rgba(30,30,30,0.95) 0, rgba(0,0,0,0.95) 100%);
+    background:         linear-gradient(to bottom,  rgba(30,30,30,0.95) 0, rgba(0,0,0,0.95) 100%);
     bottom: 0;
+    font-size: 13px;
     left: 0;
-    width: 100%;
     margin: 0;
-    padding: 0;
-    height: 31px;
-    padding-top: 13px;
-    background: url(bar-bg.png) repeat-x;
+    padding: 3px;
+    position: fixed;
+    width: 100vw;
     z-index: 9999;
-    font-size: 14px;
-    line-height: 20px;
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc45484d', endColorstr='#cc000000',GradientType=0 );
 }
 
 #permission-bar p {
     float: left;
-    padding: 0;
     margin: 4px 0 0 20px;
+    padding: 0;
 }
 
 #permission-bar-button {
-    float: right;
-    margin-right: 20px;
     background-color: #36BF2D;
-    font-size: 13px;
+    border-bottom: 1px solid #222;
+    border-radius: 5px;
+    color: #FFF!important;
+    cursor: pointer;
     display: inline-block;
-    padding: 5px 10px 6px;
-    color: #fff!important;
-    text-decoration: none;
+    float: right;
+    font-size: 13px;
     font-weight: bold;
     line-height: 1;
-    border-radius: 5px;
-    text-shadow: 0 -1px 1px #222;
-    border-bottom: 1px solid #222;
-    position: relative;
-    cursor: pointer;
+    margin-right: 20px;
     margin-top: 2px;
+    padding: 5px 10px 6px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #222;
 }
 
 #permission-bar-button-no {
-    float: right;
-    margin-right: 20px;
     background-color: #D02828;
-    font-size: 13px;
+    border-bottom: 1px solid #222;
+    border-radius: 5px;
+    color: #FFF!important;
+    cursor: pointer;
     display: inline-block;
-    padding: 5px 10px 6px;
-    color: #fff!important;
-    text-decoration: none;
+    float: right;
+    font-size: 13px;
     font-weight: bold;
     line-height: 1;
-    border-radius: 5px;
-    text-shadow: 0 -1px 1px #222;
-    border-bottom: 1px solid #222;
-    position: relative;
-    cursor: pointer;
+    margin-right: 20px;
     margin-top: 2px;
+    padding: 5px 10px 6px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 -1px 1px #222;
 }
 
 #permission-bar-prompt {
-    position: fixed;
-    width: 100%;
+    background: #000;
+    background: rgba(0,0,0,0.4);
     height: 100%;
-    top: 0;
     left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
     z-index: 9998;
-    background: url(prompt-bg.png);
 }
 
 #permission-bar-prompt-content {
-    position: absolute;
-    width: 400px;
-    padding: 25px;
-    background: black;
-    color: white;
-    opacity: 0.9;
-    z-index: 9998;
+    background: #000;
     border-radius: 7px;
-    font-size: 15px;
-
+    color: #FFF;
+    font-size: 14px;
+    margin: 0 auto;
+    max-height: 85vh;
+    max-width: 98vw;
+    opacity: 0.9;
+    padding: 25px;
+    position: relative;
     top: 5%;
-    left: 50%;
-    margin-left: -200px;
+    width: 600px;
+    z-index: 9998;
 }
-
+#permission-bar-browsers a {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 60px;
+}
+#permission-bar-browsers a span {
+    background: #FFF;
+    border-radius: 2px;
+    color: #000 !important;
+    display: none;
+    left: -10px;
+    opacity: 0.6;
+    padding: 3px 10px;
+    position: absolute;
+    text-align: center;
+    top: 105%;
+    width: 150px;
+}
+#permission-bar-browsers a:hover span {
+    display: block;
+}
 .clear {
     clear: both;
 }

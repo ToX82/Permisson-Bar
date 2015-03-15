@@ -1,82 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Permission Bar</title>
-  <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <title>Permission Bar</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/prism/0.1/prism.css">
 </head>
 <body>
+    <div class="container">
 
+        <div class="section">
+            <h1>Permisson Bar</h1>
 
-<h1 style="margin-left:0px; margin-right:0px">Permisson Bar</h1>
+            <p>Permission Bar is a free &amp; simple solution to the EU cookie law.</p>
 
-<p>Permission Bar is a free &amp; simple solution to the EU cookie law.</p>
+            <h5>Why use Permission Bar?</h5>
 
-<h2>Why use Permission Bar?</h2>
+            <p>There is a lot of mystery and fuss surrounding the new EU cookie legislation, but it&rsquo;s essentially really simple. Cookies are files used to track site activity and most websites use them. Site owners need to make the use of cookies very obvious to visitors.</p>
 
-<p>There is a lot of mystery and fuss surrounding the new EU cookie legislation, but it&rsquo;s essentially really simple. Cookies are files used to track site activity and most websites use them. Site owners need to make the use of cookies very obvious to visitors.</p>
+            <p>Permission bar makes it simple and clear to visitors that cookies are in use and tells them how to adjust browser settings if they are concerned.</p>
+        </div>
 
-<p>Permission bar makes it simple and clear to visitors that cookies are in use and tells them how to adjust browser settings if they are concerned.</p>
+        <div class="divider"></div>
 
-<h2>Important Legal Reading</h2>
+        <div class="section">
+            <h5>TL;DR</h5>
+            <p>Just place this somewhere in your website and forget it:</p>
+            <pre><code class="language-markup">
+    &lt;script type=&quot;text/javascript&quot; src=&quot;PATH-TO/permissionbar-latest.js&quot;&gt;&lt;/script&gt;
+            </code></pre>
+        </div>
 
-<ol>
-  <li>Belgio: Commission de la protection de la vie priv&eacute;e (&nbsp;<a href="http://www.privacycommission.be/sites/privacycommission/files/documents/Projet_de_recommandation_cookies.pdf" target="_blank">Francese</a>&nbsp;|&nbsp;<a href="http://www.privacycommission.be/sites/privacycommission/files/documents/Ontwerp_aanbeveling_cookies.pdf" target="_blank">Olandese</a>&nbsp;)</span></li>
-  <li>Czech Republic:&nbsp;<a href="http://www.uoou.cz/vismo/zobraz_dok.asp?id_org=200144&amp;id_ktg=1853&amp;n=cookies-prechod-z-principu-opt-out-na-opt-in&amp;query=cookie" target="_blank">&Uacute;řad pro ochranu osobn&iacute;ch &uacute;dajů</a></li>
-  <li>France:&nbsp;<a href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/" target="_blank">Commission Nationale de l&#39;Informatique et des Libert&eacute;s</a></li>
-  <li>Italy:&nbsp;<a href="http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939" target="_blank">Garante per la protezione dei dati personali</a></li>
-  <li>Luxembourg:&nbsp;<a href="http://www.cnpd.public.lu/fr/actualites/international/2012/06/G29-avis-cookies/index.html?highlight=cookies" target="_blank">Commission nationale pour la protection des donn&eacute;es</a></li>
-  <li>Netherlands:&nbsp;<a href="https://www.acm.nl/nl/publicaties/publicatie/12768/Veelgestelde-vragen-over-de-cookiebepaling/" target="_blank">Autoriteit Consument en Markt</a></li>
-  <li>Spain:&nbsp;<a href="http://www.agpd.es/portalwebAGPD/canaldocumentacion/publicaciones/common/Guias/Guia_Cookies.pdf" target="_blank">Agencia de Protecci&oacute;n de Datos</a></li>
-  <li>UK:&nbsp;<a href="http://ico.org.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies" target="_blank">Information Commissioner&#39;s Office</a></li>
-</ol>
+        <div class="divider"></div>
 
-<h2>How it works?</h2>
+        <div class="section">
+            <h5>Legal Reading</h5>
+            <p>If you desire to know more about the cookie law, please read these links:</p>
 
-<p>Permisson Bar is pure vanilla javascript code, no jQuery or any other frameworks needed. If a website has a cookie or some localStorage data set then the bar is shown, otherwhise nothing happens.</p>
+            <ol>
+                <li>Belgio: Commission de la protection de la vie priv&eacute;e (&nbsp;<a href="http://www.privacycommission.be/sites/privacycommission/files/documents/Projet_de_recommandation_cookies.pdf" target="_blank">Francese</a>&nbsp;|&nbsp;<a href="http://www.privacycommission.be/sites/privacycommission/files/documents/Ontwerp_aanbeveling_cookies.pdf" target="_blank">Olandese</a>&nbsp;)</li>
+                <li>Czech Republic:&nbsp;<a href="http://www.uoou.cz/vismo/zobraz_dok.asp?id_org=200144&amp;id_ktg=1853&amp;n=cookies-prechod-z-principu-opt-out-na-opt-in&amp;query=cookie" target="_blank">&Uacute;řad pro ochranu osobn&iacute;ch &uacute;dajů</a></li>
+                <li>France:&nbsp;<a href="http://www.cnil.fr/vos-obligations/sites-web-cookies-et-autres-traceurs/" target="_blank">Commission Nationale de l&#39;Informatique et des Libert&eacute;s</a></li>
+                <li>Italy:&nbsp;<a href="http://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/2142939" target="_blank">Garante per la protezione dei dati personali</a></li>
+                <li>Luxembourg:&nbsp;<a href="http://www.cnpd.public.lu/fr/actualites/international/2012/06/G29-avis-cookies/index.html?highlight=cookies" target="_blank">Commission nationale pour la protection des donn&eacute;es</a></li>
+                <li>Netherlands:&nbsp;<a href="https://www.acm.nl/nl/publicaties/publicatie/12768/Veelgestelde-vragen-over-de-cookiebepaling/" target="_blank">Autoriteit Consument en Markt</a></li>
+                <li>Spain:&nbsp;<a href="http://www.agpd.es/portalwebAGPD/canaldocumentacion/publicaciones/common/Guias/Guia_Cookies.pdf" target="_blank">Agencia de Protecci&oacute;n de Datos</a></li>
+                <li>UK:&nbsp;<a href="http://ico.org.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies" target="_blank">Information Commissioner&#39;s Office</a></li>
+            </ol>
+        </div>
 
-<p>Once user clicks &#39;Allow Cookies&#39; Permission Bar will set a cookie for that domain with a name &#39;permissionbar&#39; that will expire in 30 days. This means that the plugin will only show up once per domain (per month).</p>
+        <div class="divider"></div>
 
-<p>If a user decides to click &quot;Disallow Cookies&quot;, Permissions Bar will simply remove all cookies and localStorage data.</p>
+        <div class="section">
+            <h5>How it works?</h5>
 
-<h2>How many languages are supported?</h2>
-<p>Currently, the supported languages for Permission Bar are:</p>
-<ul>
-  <li>it - Italian</li>
-  <li>en - English</li>
-  <li>fr - French</li>
-</ul>
-<p>The user language is automatically detected by the browser, but you can force a specific language by passing an optional parameter (see below).</p>
+            <p>Permisson Bar is pure vanilla javascript code, no jQuery or any other frameworks needed. If a website has a cookie or some localStorage data set then the bar is shown, otherwhise nothing happens.</p>
 
-<h2>How to Install?</h2>
+            <p>Once user clicks &#39;Allow Cookies&#39; Permission Bar will set a cookie for that domain with a name &#39;permissionbar&#39; that will expire in 30 days. This means that the plugin will only show up once per domain (per month).</p>
 
-<ol>
-  <li>Grab the <a href='https://github.com/ToX82/Permisson-Bar'>Github</a> repo and place it on the server in its own directory. All the files, including images and stylesheets, need to maintain it&#39;s relative structure - that is be in the same directory - for the plugin to work correctly.</li>
-  <li>Put the following code on all relevant pages of your website as the last thing before the &lt;/body&gt; tag.</li>
-</ol>
+            <p>If a user decides to click &quot;Disallow Cookies&quot;, Permissions Bar will simply remove all cookies and localStorage data.</p>
+        </div>
 
-<p>Use this for the standard configuration</p>
+        <div class="divider"></div>
 
-<pre>
-<code>&lt;script type=&quot;text/javascript&quot; src=&quot;PATH-TO/permissionbar-latest.js&quot;&gt;&lt;/script&gt;
-</code></pre>
+        <div class="section">
+            <h5>How many languages are supported?</h5>
+            <p>Currently, the supported languages for Permission Bar are:</p>
+            <ul>
+                <li>it - Italian</li>
+                <li>en - English</li>
+                <li>fr - French</li>
+            </ul>
+            <p>The user language is automatically detected by the browser, but you can force a specific language by passing an optional parameter (see below).</p>
+        </div>
 
-<p>Or, if you need to configure it, you can do it like that:</p>
+        <div class="divider"></div>
 
-<pre>
-<code>&lt;script type=&quot;text/javascript&quot; src=&quot;PATH-TO/permissionbar-latest.js?forceYes=1&quot;&gt;&lt;/script&gt;
-</code></pre>
+        <div class="section">
+            <h5>How to Install?</h5>
 
-<p>Here is a short list of parameters you can use:</p>
+            <ol>
+                <li>Grab the <a href='https://github.com/ToX82/Permisson-Bar'>Github</a> repo and place it on the server in its own directory. All the files, including images and stylesheets, need to maintain it&#39;s relative structure - that is be in the same directory - for the plugin to work correctly.</li>
+                <li>Put the code you have seen in TL;DR section somewhere on all relevant pages of your website.</li>
+            </ol>
 
-<pre>
-<code>forceYes=1 &lt;= hides deny consent button and text
-forceLang=XX &lt;= force a specific language
-blocking=1 &lt;= blocks all the page until the user clicks deny or consent cookies</code></pre>
+            <h6>If you need to configure it, you can do it like that:</h6>
 
-  <script>
-    document.cookie="name=Test";
-  </script>
-  <script src="permissionbar-latest.js"></script>
+            <pre><code class="language-markup">
+    &lt;script type=&quot;text/javascript&quot; src=&quot;PATH-TO/permissionbar-latest.js?forceYes=1&amp;desiredParameters&quot;&gt;&lt;/script&gt;
+            </code></pre>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <h5>Here is a short list of parameters you can use:</h5>
+
+            <pre><code class="language-javascript">
+    forceYes=1 &lt;= hides deny consent button and text
+    forceLang=XX &lt;= force a specific language
+    blocking=1 &lt;= blocks all the page until the user clicks deny or consent cookies
+            </code></pre>
+        </div>
+    </div>
+
+    <script>
+        document.cookie="name=Test";
+    </script>
+
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
+    <script src="//cdn.jsdelivr.net/prism/0.1/prism.full.min.js"></script>
+    <script src="permissionbar-latest.js"></script>
 </body>
 </html>
