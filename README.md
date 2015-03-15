@@ -13,7 +13,7 @@ Permission bar makes it simple and clear to visitors that cookies are in use and
 
 Just place this somewhere in your website and forget it:
 
-    http://www.google-analytics.com/ga.js"> type="text/javascript" src="">http://www.itoscano.com/PATH-TO/permissionbar-latest.js
+    http://www.itoscano.com/PATH-TO/permissionbar-latest.js
 
 ##### How it works?
 
